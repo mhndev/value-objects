@@ -1,0 +1,25 @@
+{
+  "name": "mhndev/valueObjects",
+  "description": "common value Objects",
+  "keywords": ["value-objects","Email","Phone","Money","Version"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "majid abdolhosseini",
+      "email": "majid@mhndev.com",
+      "homepage":"http://mhndev.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "mhndev\\valueObjects\\": "src"
+    },
+    "files": [
+      "src/helpers.php"
+    ]
+  },
+  "require": {
+    "php": ">=5.4.0"
+  }
+
+}
