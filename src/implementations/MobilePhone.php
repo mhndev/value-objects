@@ -1,6 +1,6 @@
 <?php
 
-namespace mhndev\valueObjects\implementations\valueObjects;
+namespace mhndev\valueObjects\implementations;
 
 use mhndev\messagingService\exceptions\InvalidMobileFormatException;
 use mhndev\messagingService\exceptions\InvalidMobileNumberException;

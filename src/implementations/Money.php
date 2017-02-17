@@ -1,5 +1,5 @@
 <?php
-namespace mhndev\valueObjects\implementations\valueObjects;
+namespace mhndev\valueObjects\implementations;
 
 use mhndev\valueObjects\interfaces\iValueObject;
 
