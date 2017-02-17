@@ -1,5 +1,5 @@
 {
-  "name": "mhndev/valueObjects",
+  "name": "mhndev/value-objects",
   "description": "common value Objects",
   "keywords": ["value-objects","Email","Phone","Money","Version"],
   "license": "MIT",
