@@ -125,11 +125,25 @@ final class MobilePhone implements iValueObject
     }
 
     /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->code . $this->number;
+    }
+
+
+    /**
      * @param iValueObject $valueObject
      * @return boolean
      */
     function isEqual(iValueObject $valueObject)
     {
-        // TODO: Implement isEqual() method.
+        if(! $valueObject instanceof self::class){
+            return false;
+        }
+
+        /** @var MobilePhone $valueObject */
+        return ($this->__toString() == $valueObject->__toString());
     }
 }

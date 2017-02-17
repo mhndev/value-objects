@@ -161,6 +161,31 @@ final class HomePhoneTehran implements iValueObject
         return ($this->__toString()== $valueObject->__toString());
     }
 
+    /**
+     * @param bool $associative
+     * @return array
+     */
+    public function toArray($associative = true)
+    {
+        if($associative){
+            $arrayPresentation = [
+                'country' => $this->country_code,
+                'city'   => $this->city_code,
+                'number' => $this->number
+            ];
+        }
+        else{
+            $arrayPresentation = [
+                $this->country_code,
+                $this->city_code,
+                $this->number
+            ];
+        }
+
+
+        return $arrayPresentation;
+    }
+
 
     /**
      * @return string
