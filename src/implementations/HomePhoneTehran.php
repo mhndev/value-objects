@@ -1,9 +1,9 @@
 <?php
 namespace mhndev\valueObjects\implementations;
 
-use mhndev\messagingService\exceptions\InvalidHomePhoneException;
-use mhndev\messagingService\exceptions\InvalidHomePhoneFormatException;
 use mhndev\valueObjects\exceptions\InvalidArgumentException;
+use mhndev\valueObjects\exceptions\InvalidHomePhoneException;
+use mhndev\valueObjects\exceptions\InvalidHomePhoneFormatException;
 use mhndev\valueObjects\interfaces\iValueObject;
 
 /**

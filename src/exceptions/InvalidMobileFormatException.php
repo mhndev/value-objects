@@ -1,5 +1,5 @@
 <?php
-namespace mhndev\messagingService\exceptions;
+namespace mhndev\valueObjects\exceptions;
 
 /**
  * Class InvalidMobileFormatException

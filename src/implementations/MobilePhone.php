@@ -2,8 +2,8 @@
 
 namespace mhndev\valueObjects\implementations;
 
-use mhndev\messagingService\exceptions\InvalidMobileFormatException;
-use mhndev\messagingService\exceptions\InvalidMobileNumberException;
+use mhndev\valueObjects\exceptions\InvalidMobileFormatException;
+use mhndev\valueObjects\exceptions\InvalidMobileNumberException;
 use mhndev\valueObjects\interfaces\iValueObject;
 
 /**
