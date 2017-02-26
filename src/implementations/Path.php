@@ -11,6 +11,8 @@ use mhndev\valueObjects\interfaces\iValueObject;
 final class Path implements iValueObject
 {
 
+    protected $value;
+
     /**
      * Path constructor.
      * @param $value

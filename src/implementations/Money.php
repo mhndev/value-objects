@@ -11,6 +11,11 @@ final class Money implements iValueObject
 {
 
     /**
+     * @var
+     */
+    protected $value;
+
+    /**
      * @param iValueObject $valueObject
      * @return boolean
      */
