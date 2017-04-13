@@ -18,7 +18,7 @@ final class Email implements iValueObject
     protected $value;
 
     /**
-     * @var static
+     * @var string
      */
     protected $local;
 
@@ -82,7 +82,7 @@ final class Email implements iValueObject
      */
     function isEqual(iValueObject $valueObject)
     {
-        if( ! $valueObject instanceof self::class){
+        if( ! $valueObject instanceof self){
             return false;
         }
 
