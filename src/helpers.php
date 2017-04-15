@@ -15,24 +15,26 @@ if(! function_exists('startWith'))
 }
 
 
-/**
- * Determine if a given string ends with a given substring.
- *
- * @param  string  $haystack
- * @param  string|array  $needles
- * @return bool
- */
-function endsWith($haystack, $needles)
+if(! function_exists('endsWith'))
 {
-    foreach ((array) $needles as $needle) {
-        if ((string) $needle === h_substr($haystack, -length($needle))) {
-            return true;
+    /**
+     * Determine if a given string ends with a given substring.
+     *
+     * @param  string  $haystack
+     * @param  string|array  $needles
+     * @return bool
+     */
+    function endsWith($haystack, $needles)
+    {
+        foreach ((array) $needles as $needle) {
+            if ((string) $needle === h_substr($haystack, -length($needle))) {
+                return true;
+            }
         }
+
+        return false;
     }
-
-    return false;
 }
-
 
 /**
  * length function
@@ -68,4 +70,3 @@ if(! function_exists('h_substr'))
         return mb_substr($string, $start, $length, 'UTF-8');
     }
 }
-
