@@ -2,6 +2,7 @@
 namespace mhndev\valueObjects\implementations;
 
 use mhndev\valueObjects\exceptions\InvalidArgumentException;
+use mhndev\valueObjects\exceptions\InvalidTokenSchemaException;
 use mhndev\valueObjects\interfaces\iValueObject;
 
 /**
@@ -143,6 +144,36 @@ class Token  implements iValueObject
     public function __toString()
     {
         return $this->type. ' '. $this->credentials;
+    }
+
+
+    /**
+     * @param $string
+     * @return static
+     * @throws InvalidTokenSchemaException
+     */
+    public static function fromString($string)
+    {
+        if(empty($string)){
+            throw new InvalidArgumentException;
+        }
+
+        $parts = explode(' ', $string);
+
+        if(count($parts) != 2){
+            throw new InvalidArgumentException;
+        }
+
+        if(! in_array($parts[0], self::$validated_schemas)){
+            throw new InvalidTokenSchemaException(sprintf(
+                'valid token schemas are %s given schema : %s',
+                implode(' , ', self::$validated_schemas),
+                $parts[1]
+            ));
+        }
+
+
+        return new static($parts[1], $parts[0]);
     }
 
 
