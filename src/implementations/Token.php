@@ -154,11 +154,14 @@ class Token  implements iValueObject
      */
     public static function fromString($string)
     {
-        if(empty($string)){
-            throw new InvalidArgumentException;
+        if(empty($string) || ! is_string($string)){
+            throw new InvalidArgumentException(
+                'should be valid string and should not be empty'
+            );
         }
 
         $parts = explode(' ', $string);
+
 
         if(count($parts) != 2){
             throw new InvalidArgumentException;
