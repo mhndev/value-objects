@@ -154,7 +154,7 @@ final class HomePhoneTehran implements iValueObject
      */
     function isEqual(iValueObject $valueObject)
     {
-        if(! $valueObject instanceof self::class){
+        if(! $valueObject instanceof self){
             return false;
         }
 
