@@ -15,21 +15,17 @@ use mhndev\valueObjects\interfaces\iValueObject;
 final class HomePhoneTehran implements iValueObject
 {
 
-    /**
-     * @var string
-     */
-    protected $givenValue;
 
     /**
      * @var string
      */
-    protected $city_code;
+    protected $city_code = '21';
 
 
     /**
      * @var string
      */
-    protected $country_code;
+    protected $country_code = '+98';
 
     /**
      * @var string
@@ -57,6 +53,15 @@ final class HomePhoneTehran implements iValueObject
      */
     public function __construct($givenValue)
     {
+        if($givenValue instanceof \Traversable){
+            $givenValue = iterator_to_array($givenValue);
+        }
+
+
+        if(is_array($givenValue)){
+            $givenValue = $givenValue['number'];
+        }
+
         if(intval($givenValue) == $givenValue){
             $givenValue = (int) $givenValue;
         }
@@ -65,13 +70,13 @@ final class HomePhoneTehran implements iValueObject
             throw new InvalidArgumentException(sprintf('integer needed given : %s'), gettype($givenValue));
         }
 
-        if(startWith($this->givenValue, '021')){
-            if(length($this->givenValue) != 11){
+        if(startWith($givenValue, '021')){
+            if(length($givenValue) != 11){
                 throw new InvalidHomePhoneException;
             }
 
             $this->city_code = '021';
-            $this->number = h_substr($this->givenValue, 3, 8);
+            $this->number = h_substr($givenValue, 3, 8);
         }
 
         elseif (startWith($givenValue, '21')){
