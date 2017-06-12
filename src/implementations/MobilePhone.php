@@ -1,5 +1,4 @@
 <?php
-
 namespace mhndev\valueObjects\implementations;
 
 use mhndev\valueObjects\exceptions\InvalidMobileFormatException;
@@ -38,6 +37,20 @@ final class MobilePhone implements iValueObject
      */
     public function __construct($number, $code = '+98')
     {
+        $number = static::isValid($number);
+
+        $this->number = $number;
+        $this->code   = $code;
+    }
+
+
+    /**
+     * @param $number
+     * @return string
+     * @throws InvalidMobileNumberException
+     */
+    public static function isValid($number)
+    {
         if(startWith($number, '0')){
 
             if($length = strlen($number) != 11){
@@ -45,9 +58,11 @@ final class MobilePhone implements iValueObject
                 should have 11 characters, given mobile has %s numbers of characters', $length));
             }
 
+            if(!in_array(substr($number, 2, 1), ['0', '1', '2', '3'])){
+                throw new InvalidMobileNumberException(sprintf('Third part of mobile number should be 0,1,2 or 3, given %s', substr($number, 2, 1)));
+            }
             $number = ltrim($number, 0);
         }
-
 
         elseif(startWith($number, '+98') || startWith($number, '098') ){
             $number  = substr($number, 3, strlen($number) - 3);
@@ -64,12 +79,9 @@ final class MobilePhone implements iValueObject
                 throw new InvalidMobileNumberException(sprintf('mobile number which starts with zero 
                 should have 10 characters, given mobile has %s numbers of characters', $length));
             }
-
-
         }
 
-        $this->number = $number;
-        $this->code   = $code;
+        return $number;
     }
 
     /**

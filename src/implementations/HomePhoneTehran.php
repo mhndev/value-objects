@@ -53,6 +53,23 @@ final class HomePhoneTehran implements iValueObject
      */
     public function __construct($givenValue)
     {
+        $number = $this->isValid($givenValue);
+
+        $this->city_code = '021';
+        $this->country_code = '+98';
+        $this->number = $number;
+
+    }
+
+    /**
+     * @param $givenValue
+     * @return string
+     * @throws InvalidHomePhoneException
+     */
+    public static function isValid($givenValue)
+    {
+        $number = $givenValue;
+        $givenValue = (string) $givenValue;
         if($givenValue instanceof \Traversable){
             $givenValue = iterator_to_array($givenValue);
         }
@@ -66,7 +83,7 @@ final class HomePhoneTehran implements iValueObject
             $givenValue = (int) $givenValue;
         }
 
-        if(! is_int($givenValue)){
+        if(!is_int($givenValue)){
             throw new InvalidArgumentException(sprintf('integer needed given : %s'), gettype($givenValue));
         }
 
@@ -75,8 +92,7 @@ final class HomePhoneTehran implements iValueObject
                 throw new InvalidHomePhoneException;
             }
 
-            $this->city_code = '021';
-            $this->number = h_substr($givenValue, 3, 8);
+            $number = h_substr($givenValue, 3, 8);
         }
 
         elseif (startWith($givenValue, '21')){
@@ -84,8 +100,7 @@ final class HomePhoneTehran implements iValueObject
                 throw new InvalidHomePhoneException;
             }
 
-            $this->city_code = '021';
-            $this->number = h_substr($givenValue, 2, 8);
+            $number = h_substr($givenValue, 2, 8);
         }
 
         elseif (startWith($givenValue, '+98')){
@@ -93,14 +108,12 @@ final class HomePhoneTehran implements iValueObject
                 throw new InvalidHomePhoneException;
             }
 
-            $this->city_code = '021';
-            $this->number = h_substr($givenValue, 5, 8);
+            $number = h_substr($givenValue, 5, 8);
         }
 
         elseif (startWith($givenValue, '98')){
-            $this->city_code = '021';
-            $this->country_code = '+98';
-            $this->number = h_substr($givenValue, 4, 8);
+
+            $number = h_substr($givenValue, 4, 8);
 
         }
 
@@ -108,11 +121,9 @@ final class HomePhoneTehran implements iValueObject
             if(length($givenValue) != 8){
                 throw new InvalidHomePhoneException;
             }
-
-            $this->city_code = '021';
-            $this->country_code = '+98';
-            $this->number = $givenValue;
         }
+
+        return $number;
 
     }
 
@@ -150,7 +161,7 @@ final class HomePhoneTehran implements iValueObject
         }
 
 
-        return $returnValue;
+        return (string) $returnValue;
     }
 
     /**
