@@ -88,7 +88,7 @@ final class HomePhoneTehran implements iValueObject
         }
 
         if(startWith($givenValue, '021')){
-            if(length($givenValue) != 11){
+            if(length($givenValue) != 11 || length($givenValue)!= 8 || length($givenValue) != 7){
                 throw new InvalidHomePhoneException;
             }
 
@@ -96,7 +96,7 @@ final class HomePhoneTehran implements iValueObject
         }
 
         elseif (startWith($givenValue, '21')){
-            if(length($givenValue) != 10){
+            if(length($givenValue) != 10 || length($givenValue)!= 7 || length($givenValue)!= 6){
                 throw new InvalidHomePhoneException;
             }
 
@@ -104,7 +104,7 @@ final class HomePhoneTehran implements iValueObject
         }
 
         elseif (startWith($givenValue, '+98')){
-            if(length($givenValue) != 13){
+            if(length($givenValue) != 13 || length($givenValue) != 10 || length($givenValue) != 9){
                 throw new InvalidHomePhoneException;
             }
 
@@ -118,7 +118,7 @@ final class HomePhoneTehran implements iValueObject
         }
 
         else{
-            if(length($givenValue) != 8){
+            if(length($givenValue) != 8 || length($givenValue) != 5 || length($givenValue) != 4){
                 throw new InvalidHomePhoneException;
             }
         }

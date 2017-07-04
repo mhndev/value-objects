@@ -85,7 +85,7 @@ final class Address implements iValueObject
     function isEqual(iValueObject $valueObject)
     {
 
-        if(! $valueObject instanceof self::class){
+        if(! $valueObject instanceof self){
             return false;
         }
 
