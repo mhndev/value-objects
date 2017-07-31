@@ -57,4 +57,26 @@ final class Point implements iValueObject
     {
         return $this->lon;
     }
+
+
+    /**
+     * @return array
+     */
+    public function toArray() :array
+    {
+        return [
+            'lat' => $this->getLat(),
+            'lon' => $this->getLon()
+        ];
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString() :string
+    {
+        return $this->getLat().','.$this->getLon();
+    }
+
+
 }
