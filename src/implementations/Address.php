@@ -28,7 +28,12 @@ final class Address implements iValueObject
     /**
      * @var string
      */
-    protected $street;
+    protected $neighbourhood;
+
+    /**
+     * @var
+     */
+    protected $detail;
 
     /**
      * @var string
@@ -49,27 +54,30 @@ final class Address implements iValueObject
     /**
      * Address constructor.
      *
-     * @param string $country
-     * @param string $city
-     * @param string $street
+     * @param string $neighbourhood
+     * @param $detail
      * @param string $block
      * @param string $no
-     * @param string | null $postalCode
      * @param null $point
+     * @param string $country
+     * @param string $city
+     * @param string $postalCode
      */
     public function __construct(
-        $country,
-        $city,
-        $street,
+        $neighbourhood,
+        $detail,
         $block,
         $no,
-        $postalCode = null,
-        $point = null
+        $point ,
+        $country ,
+        $city ,
+        $postalCode
     )
     {
         $this->country = $country;
         $this->city = $city;
-        $this->street = $street;
+        $this->neighbourhood = $neighbourhood;
+        $this->detail = $detail;
         $this->block = $block;
         $this->no = $no;
         $this->postalCode = $postalCode;
@@ -84,14 +92,16 @@ final class Address implements iValueObject
      */
     static function fromOptions(array $options)
     {
+
         return new static(
-            $options['country'],
-            $options['city'],
-            $options['street'],
+            $options['neighbourhood'],
+            $options['detail'],
             $options['block'],
             $options['no'],
-            $options['postalCode'],
-            $options['point']
+            $options['point'],
+            !empty($options['country']) ? $options['country'] : 'Iran',
+            !empty($options['city']) ? $options['city'] : 'Tehran',
+            !empty($options['postalCode']) ? $options['postalCode'] : null
         );
     }
 
@@ -101,7 +111,7 @@ final class Address implements iValueObject
      */
     function __toString()
     {
-        $string = $this->country.' '.$this->city.' '.$this->street.' '.$this->block.' '.$this->no;
+        $string = $this->country.' '.$this->city.' '.$this->neighbourhood.' '.$this->detail . ' ' .$this->block.' '.$this->no;
 
         if(!empty($this->postalCode)){
             $string .= ' '.$this->postalCode;
@@ -152,13 +162,6 @@ final class Address implements iValueObject
     }
 
 
-    /**
-     * @return string
-     */
-    public function getStreet(): string
-    {
-        return $this->street;
-    }
 
     /**
      * @return string
@@ -184,6 +187,21 @@ final class Address implements iValueObject
         return $this->point;
     }
 
+    /**
+     * @return string
+     */
+    public function getNeighbourhood(): string
+    {
+        return $this->neighbourhood;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDetail()
+    {
+        return $this->detail;
+    }
 
     /**
      * @return array
@@ -191,15 +209,18 @@ final class Address implements iValueObject
     public function toArray()
     {
         return [
-            'country'    => $this->getCountry(),
-            'city'       => $this->getCity(),
-            'block'      => $this->getBlock(),
-            'no'         => $this->getNo(),
-            'postalCode' => $this->getPostalCode(),
-            'point'      => $this->getPoint(),
-            'street'     => $this->getStreet()
+            'country'       => $this->getCountry(),
+            'city'          => $this->getCity(),
+            'block'         => $this->getBlock(),
+            'no'            => $this->getNo(),
+            'postalCode'    => $this->getPostalCode(),
+            'point'         => $this->getPoint(),
+            'neighbourhood' => $this->getNeighbourhood(),
+            'detail'        => $this->getDetail()
         ];
 
     }
+
+
 
 }

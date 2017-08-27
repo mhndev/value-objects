@@ -158,4 +158,16 @@ final class MobilePhone implements iValueObject
         /** @var MobilePhone $valueObject */
         return ($this->__toString() == $valueObject->__toString());
     }
+
+    /**
+     * @param $value
+     * @return static
+     */
+    public static function fromOptions($value)
+    {
+        if (!empty($value)){
+            return new static($value);
+        }
+        return null;
+    }
 }

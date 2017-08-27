@@ -211,4 +211,17 @@ final class HomePhoneTehran implements iValueObject
     {
         return $this->country_code.'21'.$this->number;
     }
+
+
+    /**
+     * @param $value
+     * @return static
+     */
+    public static function fromOptions($value)
+    {
+        if (!empty($value)){
+            return new static($value);
+        }
+        return null;
+    }
 }
