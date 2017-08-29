@@ -221,6 +221,18 @@ final class Address implements iValueObject
 
     }
 
+    /**
+     * @return array
+     */
+    public function preview()
+    {
+        $result = $this->toArray();
+        if (!empty($result['point'])){
+            $result['point'] = $result['point']->preview();
+        }
+        return $result;
+    }
+
 
 
 }

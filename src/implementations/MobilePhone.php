@@ -73,7 +73,6 @@ final class MobilePhone implements iValueObject
         }
 
         else{
-
             if($length = strlen($number) != 10){
 
                 throw new InvalidMobileNumberException(sprintf('mobile number which starts with zero 
@@ -134,6 +133,14 @@ final class MobilePhone implements iValueObject
 
 
         return $arrayPresentation;
+    }
+
+    /**
+     * @return string
+     */
+    public function preview()
+    {
+        return $this->__toString();
     }
 
     /**
