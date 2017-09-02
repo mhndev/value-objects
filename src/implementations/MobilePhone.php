@@ -140,7 +140,7 @@ final class MobilePhone implements iValueObject
      */
     public function preview()
     {
-        return $this->__toString();
+        return '0'. $this->number;
     }
 
     /**

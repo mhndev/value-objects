@@ -217,7 +217,7 @@ final class HomePhoneTehran implements iValueObject
      */
     function preview()
     {
-        return $this->__toString();
+        return $this->number;
     }
 
     /**
