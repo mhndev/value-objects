@@ -214,7 +214,7 @@ final class Address implements iValueObject
             'block'         => $this->getBlock(),
             'no'            => $this->getNo(),
             'postalCode'    => $this->getPostalCode(),
-            'point'         => $this->getPoint(),
+            'point'         => !empty($this->getPoint()) ? $this->getPoint()->toArray() : null,
             'neighbourhood' => $this->getNeighbourhood(),
             'detail'        => $this->getDetail()
         ];
@@ -226,11 +226,7 @@ final class Address implements iValueObject
      */
     public function preview()
     {
-        $result = $this->toArray();
-        if (!empty($result['point'])){
-            $result['point'] = $result['point']->preview();
-        }
-        return $result;
+        return $this->toArray();
     }
 
 
