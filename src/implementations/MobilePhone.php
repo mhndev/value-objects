@@ -162,6 +162,7 @@ final class MobilePhone implements iValueObject
     /**
      * @param $value
      * @return static
+     * @throws InvalidMobileNumberException
      */
     public static function fromOptions($value)
     {
@@ -170,4 +171,26 @@ final class MobilePhone implements iValueObject
         }
         return null;
     }
+
+
+    /**
+     * @throws InvalidMobileFormatException
+     * @return bool
+     */
+    public function isMCI()
+    {
+        $number = $this->format(self::WithoutZero);
+
+        $firstThreeChars = substr($number, 0, 3);
+
+        if(in_array(
+            $firstThreeChars,
+            ['910','911','912','913','914','915','916','917','918','919','990','991']
+        )) {
+            return true;
+        }
+
+        return false;
+    }
+
 }
