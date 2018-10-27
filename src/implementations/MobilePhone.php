@@ -58,8 +58,8 @@ final class MobilePhone implements iValueObject
                 should have 11 characters, given mobile has %s numbers of characters', $length));
             }
 
-            if(!in_array(substr($number, 2, 1), ['0', '1', '2', '3'])){
-                throw new InvalidMobileNumberException(sprintf('Third part of mobile number should be 0,1,2 or 3, given %s', substr($number, 2, 1)));
+            if(!in_array( substr($number, 2, 1), ['0', '1', '2', '3', '9']) ) {
+                throw new InvalidMobileNumberException(sprintf('Third part of mobile number should be 0,1,2, 3 or 9, given %s', substr($number, 2, 1)));
             }
             $number = ltrim($number, 0);
         }
