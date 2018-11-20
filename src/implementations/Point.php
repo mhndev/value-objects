@@ -71,6 +71,14 @@ final class Point implements iValueObject
     }
 
     /**
+     * @return array
+     */
+    public function preview()
+    {
+        return $this->toArray();
+    }
+
+    /**
      * @return string
      */
     public function __toString() :string

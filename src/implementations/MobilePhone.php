@@ -73,7 +73,6 @@ final class MobilePhone implements iValueObject
         }
 
         else{
-
             if($length = strlen($number) != 10){
 
                 throw new InvalidMobileNumberException(sprintf('mobile number which starts with zero 
@@ -139,6 +138,14 @@ final class MobilePhone implements iValueObject
     /**
      * @return string
      */
+    public function preview()
+    {
+        return '0'. $this->number;
+    }
+
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->code . $this->number;
@@ -186,6 +193,27 @@ final class MobilePhone implements iValueObject
         if(in_array(
             $firstThreeChars,
             ['910','911','912','913','914','915','916','917','918','919','990','991']
+        )) {
+            return true;
+        }
+
+        return false;
+    }
+
+
+    /**
+     * @return bool
+     * @throws InvalidMobileFormatException
+     */
+    function isMTN()
+    {
+        $number = $this->format(self::WithoutZero);
+
+        $firstThreeChars = substr($number, 0, 3);
+
+        if(in_array(
+            $firstThreeChars,
+            ['901','902','903','933','935','936','937','938','939']
         )) {
             return true;
         }

@@ -98,7 +98,7 @@ final class Address implements iValueObject
             $options['detail'],
             $options['block'],
             $options['no'],
-            $options['point'],
+            new Point($options['point']['lat'],$options['point']['lon']),
             !empty($options['country']) ? $options['country'] : 'Iran',
             !empty($options['city']) ? $options['city'] : 'Tehran',
             !empty($options['postalCode']) ? $options['postalCode'] : null
@@ -140,7 +140,7 @@ final class Address implements iValueObject
     /**
      * @return string
      */
-    public function getPostalCode(): string
+    public function getPostalCode()
     {
         return $this->postalCode;
     }
@@ -214,11 +214,19 @@ final class Address implements iValueObject
             'block'         => $this->getBlock(),
             'no'            => $this->getNo(),
             'postalCode'    => $this->getPostalCode(),
-            'point'         => $this->getPoint(),
+            'point'         => !empty($this->getPoint()) ? $this->getPoint()->toArray() : null,
             'neighbourhood' => $this->getNeighbourhood(),
             'detail'        => $this->getDetail()
         ];
 
+    }
+
+    /**
+     * @return array
+     */
+    public function preview()
+    {
+        return $this->toArray();
     }
 
 
