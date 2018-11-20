@@ -7,8 +7,6 @@
 
 ```php
 
-
-
 use mhndev\valueObjects\implementations\Email;
 use mhndev\valueObjects\implementations\MobilePhone;
 use mhndev\valueObjects\implementations\Token;
@@ -24,6 +22,13 @@ echo $mobileObject->format(MobilePhone::WithoutZero);
 
 ### output : 9124444444
 
+echo $mobileObject->isMCI(MobilePhone::WithoutZero);
+
+### output : true
+
+echo $mobileObject->isMTN(MobilePhone::WithoutZero);
+
+### output : false
 
 $emailObject = new Email('info@example.com');
 
